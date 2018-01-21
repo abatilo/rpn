@@ -43,6 +43,15 @@ public class RpnApplication {
         op.equals("*"));
   }
 
+  private static boolean isNumber(String operand) {
+    try {
+      Float.valueOf(operand);
+      return true;
+    } catch (Exception e) {
+      return false;
+    }
+  }
+
   private static float evalSingle(String s) {
     String[] tokens = s.split(" ");
     if (tokens.length != 3) {
@@ -50,16 +59,16 @@ public class RpnApplication {
     }
 
     Float leftOperand = 0.0f;
-    try {
+    if (isNumber(tokens[0])) {
       leftOperand = Float.valueOf(tokens[0]);
-    } catch (NumberFormatException e) {
+    } else {
       throw new IllegalArgumentException("First operand is not a valid float");
     }
 
     Float rightOperand = 0.0f;
-    try {
+    if (isNumber(tokens[1])) {
       rightOperand = Float.valueOf(tokens[1]);
-    } catch (NumberFormatException e) {
+    } else {
       throw new IllegalArgumentException("Second operand is not a valid " +
           "float");
     }
@@ -67,7 +76,7 @@ public class RpnApplication {
     String op = tokens[2];
     if (!isOperator(op)) {
       throw new IllegalArgumentException("Operand is not valid");
-          }
+    }
 
     switch (op) {
       case "+":
