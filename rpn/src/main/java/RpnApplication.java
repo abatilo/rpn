@@ -65,10 +65,7 @@ public class RpnApplication {
     }
 
     String op = tokens[2];
-    if (!(op.equals("+") ||
-          op.equals("-") ||
-          op.equals("/") ||
-          op.equals("*"))) {
+    if (!isOperator(op)) {
       throw new IllegalArgumentException("Operand is not valid");
           }
 
