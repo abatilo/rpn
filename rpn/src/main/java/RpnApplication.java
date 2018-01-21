@@ -1,9 +1,19 @@
 import java.util.ArrayDeque;
+import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class RpnApplication {
   public static void main(String[] args) {
-    System.out.println(eval("1 1 1 + 7 * +"));
+    Scanner s = new Scanner(System.in);
+    System.out.print("# ");
+    while (s.hasNextLine()) {
+      try {
+        System.out.println("=> " + eval(s.nextLine()));
+      } catch (Exception e) {
+        System.out.println("Invalid expression");
+      }
+      System.out.print("# ");
+    }
   }
 
   public static String eval(String s) {
@@ -27,9 +37,9 @@ public class RpnApplication {
 
   private static boolean isOperator(String op) {
     return (op.equals("+") ||
-          op.equals("-") ||
-          op.equals("/") ||
-          op.equals("*"));
+        op.equals("-") ||
+        op.equals("/") ||
+        op.equals("*"));
   }
 
   private static float evalSingle(String s) {
@@ -59,7 +69,7 @@ public class RpnApplication {
           op.equals("/") ||
           op.equals("*"))) {
       throw new IllegalArgumentException("Operand is not valid");
-    }
+          }
 
     switch (op) {
       case "+":
